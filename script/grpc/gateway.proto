@@ -1,0 +1,20 @@
+syntax="proto3";
+package model;
+
+option go_package = "/model";
+
+message Request {
+    string request_id = 1;
+    string method = 2;
+    string route = 3;
+    string body = 4;
+}
+
+message Response {
+    string request_id = 1;
+    string body = 2;
+}
+
+service Gateway {
+    rpc Stream (stream Response) returns (stream Request);
+}
